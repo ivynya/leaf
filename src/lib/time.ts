@@ -8,9 +8,14 @@ let _isLocked = false;
 isLocked.subscribe((isLocked) => _isLocked = isLocked);
 
 export const currentDayPercentage = writable<number>(getCurrentDayPercentage());
-export const currentLightingConditions = writable<LightingConditions>();
+export const currentLightingConditions = writable<LightingConditions>({
+  color: "#e0e0e0",
+  isLight: true,
+  v: 0,
+  w: 0,
+});
 export const isLight = writable<boolean>(false);
-export const stylesheet = writable<string>();
+export const stylesheet = writable<string>("");
 currentLightingConditions.subscribe((l) => {
   isLight.set(l.isLight);
   stylesheet.set(generateStylesheet(l));

@@ -33,17 +33,47 @@ function getLightingConditions(time: number): LightingConditions {
 
 function getBackgroundColorFromTime(time: number): string {
   const index = Math.floor(time * 6);
-  const colors = [
-    { h: 231, s: 15, l: 18 },
-    { h: 38, s: 52, l: 83 },
-    { h: 28, s: 47, l: 87 },
-    { h: 0, s: 0, l: 88 },
-    { h: 0, s: 0, l: 88 },
-    { h: 33, s: 63, l: 90 },
-    { h: 231, s: 15, l: 18 },
-  ]
-  if (index >= colors.length) return "#e0e0e0";
-  return averageColors(colors[index], colors[index + 1], time * 6 - index);
+  switch (index) {
+    case 0:
+      return averageColors(
+        { h: 231, s: 15, l: 18 },
+        { h: 231, s: 15, l: 18 },
+        time * 6 - index,
+      );
+    case 1:
+      return averageColors(
+        { h: 38, s: 52, l: 83 },
+        { h: 28, s: 47, l: 87 },
+        time * 6 - index,
+      );
+    case 2:
+      return averageColors(
+        { h: 28, s: 47, l: 87 },
+        { h: 0, s: 0, l: 88 },
+        time * 6 - index,
+      );
+    case 3:
+      return averageColors(
+        { h: 0, s: 0, l: 88 },
+        { h: 0, s: 0, l: 88 },
+        time * 6 - index,
+      );
+    case 4:
+      return averageColors(
+        { h: 0, s: 0, l: 88 },
+        { h: 33, s: 63, l: 90 },
+        time * 6 - index,
+      );
+    case 5:
+    case 6:
+      return averageColors(
+        { h: 231, s: 15, l: 18 },
+        { h: 231, s: 15, l: 18 },
+        time * 6 - index,
+      );
+    default:
+      return "#e0e0e0";
+  }
 }
 
 // Averages two HSL colors (better method than RGB)

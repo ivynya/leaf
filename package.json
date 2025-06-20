@@ -1,6 +1,6 @@
 {
 	"name": "@ivynya/leaf",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -27,13 +27,14 @@
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.20.8",
-		"@sveltejs/package": "^2.3.7",
+		"@sveltejs/adapter-auto": "^6.0.0",
+		"@sveltejs/kit": "^2.21.5",
+		"@sveltejs/package": "^2.3.11",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.2.6",
 		"publint": "^0.1.9",
+		"sass": "^1.89.2",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tslib": "^2.4.1",

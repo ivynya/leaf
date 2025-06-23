@@ -120,12 +120,12 @@ export function generateStylesheet(l: LightingConditions): string {
 		--bg: ${tinycolor(l.color).toHexString()};
 		--bg-t8: ${tinycolor(l.color).toHexString()}88;
 		--bg-t0: ${tinycolor(l.color).toHexString()}00;
-		--bg-lighter-t8: ${lighten(l.color, 4).toHexString()}88;
+		--bg-lighter-t5: ${lighten(l.color, 4).toHexString()}55;
 		--bg-lighter: ${lighten(l.color, 4).toHexString()};
 		--bg-light: ${lighten(l.color, 3).toHexString()};
 		--bg-dark: ${darken(l.color, 5).toHexString()};
 		--bg-darker: ${darken(l.color, l.isLight ? 12 : 8).toHexString()};
-		--bg-darker-t8: ${darken(l.color, l.isLight ? 12 : 8).toHexString()}88;
+		--bg-darker-t5: ${darken(l.color, l.isLight ? 12 : 8).toHexString()}55;
 
 		--bd-primary: ${tinycolor(l.color).lighten(5).toHexString()};
 		--bd-secondary: ${tinycolor(l.color).lighten(2).toHexString()};
@@ -140,13 +140,13 @@ export function generateStylesheet(l: LightingConditions): string {
 
 		--nm-md-h-primary: ${shadow(vx, wx, 6, 'md')} var(--bg-lighter);
 		--nm-md-h-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--bg-darker);
-		--nm-md-b-primary: ${shadow(vx, wx, 6, 'md')} var(--bg-lighter-t8);
-		--nm-md-b-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--bg-darker-t8);
+		--nm-md-b-primary: ${shadow(vx, wx, 6, 'md')} var(--bg-lighter-t5);
+		--nm-md-b-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--bg-darker-t5);
 
 		--nm-sm-h-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter);
 		--nm-sm-h-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker);
-		--nm-sm-b-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t8);
-		--nm-sm-b-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t8);
+		--nm-sm-b-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t5);
+		--nm-sm-b-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t5);
 
 		--tx: ${l.isLight ? '#555' : '#f8f8f2'};
 		--tx-muted: ${l.isLight ? darken(l.color, 25).toHexString() : lighten(l.color, 45).toHexString()};

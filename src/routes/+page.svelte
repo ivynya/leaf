@@ -1,15 +1,84 @@
 <script lang="ts">
+	import ButtonDeck from '$lib/component-input/ButtonDeck.svelte';
+	import ButtonIcon from '$lib/component-input/ButtonIcon.svelte';
+	import ButtonPush from '$lib/component-input/ButtonPush.svelte';
+	import Rotary from '$lib/component-input/Rotary.svelte';
+	import Select from '$lib/component-input/Select.svelte';
+	import Slider from '$lib/component-input/Slider.svelte';
+	import Toggle from '$lib/component-input/Toggle.svelte';
 	import Colors from './Colors.svelte';
 	import Warp from './Warp.svelte';
 </script>
 
-<main>
-	<h1>Welcome to your library project</h1>
+<div>
+	<h1>@ivynya/leaf</h1>
 	<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-	<Warp />
-	<Colors />
-</main>
+
+	<h2>Design Requirements</h2>
+	<p>
+		Versatile set of components that can be styled dynamically by nearly any one base color. Should
+		be able to construct nearly any kind of application using these components, styles, and
+		guidelines. Components should stand out and be recongizable as interactive elements.
+		Skeumorphism should be present to some extent with some minimal changes able to be made for
+		accessibility and clarity.
+	</p>
+	<div class="cols">
+		<div>
+			<h2>Change Time of Day</h2>
+			<Warp />
+		</div>
+		<div>
+			<h2>Color Output</h2>
+			<Colors />
+		</div>
+	</div>
+
+	<br />
+	<h2>Example Components</h2>
+	<section class="components">
+		<div class="cols">
+			<div>
+				<Slider
+					value={0.01}
+					label="Slider Example"
+					on:change={() => console.log('Slider changed')}
+				/>
+				<Select
+					options={['Option 1', 'Option 2', 'Option 3']}
+					selected="Option 2"
+					on:change={() => console.log('Select changed')}
+				/>
+				<ButtonDeck
+					options={['Option 1', 'Option 2', 'Option 3', 'Option 4']}
+					selected="Option 2"
+				/>
+			</div>
+			<div>
+				<Toggle
+					iconOn="check"
+					iconOff="x"
+					state={true}
+					on:change={() => console.log('Toggle changed')}
+				/>
+				<Rotary max={10} />
+				<ButtonIcon title="check" icon="check" />
+				<ButtonPush label="meow" push={() => {}} />
+			</div>
+		</div>
+	</section>
+</div>
 
 <style>
+	.cols {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 5rem;
+		align-items: flex-start;
+	}
+
+	.components .cols div {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
 </style>

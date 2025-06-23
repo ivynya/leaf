@@ -18,23 +18,23 @@
 />
 
 <style lang="scss">
+	@use '$lib/styles/mxn.scss';
+
 	.slider {
+		@include mxn.nm-shadow-sm-inset;
 		-webkit-appearance: none;
 		appearance: none;
 		border-radius: 10px;
-		margin: 10px 0;
-		height: 12px;
+		box-sizing: border-box;
+		height: 15px;
+		margin: 5px 0;
 		width: 100%;
 		outline: none;
 
 		--slider-thumb-size: 25px;
 
-		&.big {
-			--slider-thumb-size: 30px;
-			height: 15px;
-		}
-
 		&::-webkit-slider-thumb {
+			@include mxn.nm-shadow-sm;
 			background-color: var(--background-darker);
 			border-radius: 50%;
 			-webkit-appearance: none;
@@ -45,6 +45,7 @@
 		}
 
 		&::-moz-range-thumb {
+			@include mxn.nm-shadow-sm;
 			background-color: var(--background-darker);
 			border-radius: 50%;
 			-webkit-appearance: none;

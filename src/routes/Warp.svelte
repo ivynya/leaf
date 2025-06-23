@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Slider from './Slider.svelte';
+	import Slider from '$lib/component-input/Slider.svelte';
 	import { isLight } from '$lib/time';
 	import { currentDayPercentage, isLocked, updateCurrentDayPercentage } from '$lib/time';
 

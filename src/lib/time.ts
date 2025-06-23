@@ -4,9 +4,9 @@ import type { HSLColor, LightingConditions } from '$lib/schema.ts';
 
 const colors = [
 	{ h: 231, s: 15, l: 18 },
-	{ h: 38, s: 52, l: 83 },
+	{ h: 38, s: 35, l: 83 },
 	{ h: 28, s: 47, l: 87 },
-	{ h: 0, s: 0, l: 88 },
+	{ h: 10, s: 10, l: 88 },
 	{ h: 33, s: 63, l: 90 }
 ];
 

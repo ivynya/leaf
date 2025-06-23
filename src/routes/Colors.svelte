@@ -17,14 +17,13 @@
 <style class="scss">
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(10, 1fr);
-		gap: 0.5rem;
-		padding: 1rem;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.125rem;
 
 		div {
 			width: 100%;
-			height: 50px;
-			border-radius: 0.25rem;
+			height: 60px;
+			border-radius: 0.125rem;
 		}
 	}
 </style>

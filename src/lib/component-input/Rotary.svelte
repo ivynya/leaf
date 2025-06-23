@@ -318,7 +318,7 @@
 		border: 1px solid;
 		border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
 		box-shadow:
-			var(--nm-md-h-secondary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff),
+			var(--nm-md-h-primary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff),
 			var(--nm-md-h-secondary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff);
 
 		display: flex;

@@ -175,7 +175,7 @@
 
 	.dropdown-menu {
 		border-radius: var(--bd-radius-sm);
-		box-shadow: var(--nm-md-h-secondary), var(--nm-sm-h-primary);
+		box-shadow: var(--nm-md-h-primary), var(--nm-md-h-secondary);
 		backdrop-filter: blur(3px);
 		background-blend-mode: revert;
 		position: absolute;

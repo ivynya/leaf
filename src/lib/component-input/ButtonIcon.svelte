@@ -22,7 +22,7 @@
 <style lang="scss">
 	.btn {
 		background-color: transparent;
-		border: var(--text-accent) 1.5px solid;
+		border: var(--tx-accent) 1.5px solid;
 		border-radius: 5px;
 		box-sizing: border-box;
 		cursor: pointer;
@@ -35,14 +35,14 @@
 		position: relative;
 
 		svg {
-			color: var(--text-accent);
+			color: var(--tx-accent);
 			height: 60%;
 			width: 60%;
 			transition-duration: 0.2s;
 		}
 
 		.hover {
-			background-color: var(--background);
+			background-color: var(--bg);
 			border-radius: 50%;
 			box-sizing: border-box;
 			height: 14px;
@@ -55,11 +55,11 @@
 		}
 
 		&:hover {
-			background-color: var(--background-lighter);
-			border-color: var(--text-muted);
+			background-color: var(--bg-lighter);
+			border-color: var(--tx-muted);
 		}
 		&:hover svg {
-			color: var(--text-muted);
+			color: var(--tx-muted);
 		}
 		&:hover .hover {
 			transform: translate(0);

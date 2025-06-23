@@ -1,25 +1,25 @@
 :root {
-	--background: #282a36;
-	--background-transparent: #282a3600;
-	--background-lighter: #303241;
-	--background-darker: #16171d;
-	--border-primary: #333645;
-	--border-secondary: #252732;
+	--bg: #282a36;
+	--bg-transparent: #282a3600;
+	--bg-lighter: #303241;
+	--bg-darker: #16171d;
+	--bd-primary: #333645;
+	--bd-secondary: #252732;
 	--scrollbar-lightest: #3d4052;
 	--scrollbar-light: #3d4052;
 	--scrollbar-dark: #484b61;
 	--scrollbar-darkest: #3d4052;
 	--nm-spread-md: 10px;
 	--nm-spread-sm: 5px;
-	--nm-shadow-md-primary: 0 0 var(--nm-spread-md) var(--background-lighter);
-	--nm-shadow-md-secondary: 0 0 var(--nm-spread-md) var(--background-darker);
-	--nm-shadow-sm-primary: 0 0 var(--nm-spread-sm) var(--background-lighter);
-	--nm-shadow-sm-secondary: 0 0 var(--nm-spread-sm) var(--background-darker);
-	--text-color: #f8f8f2;
-	--text-accent: #6272a4;
-	--border-radius-lg: 15px;
-	--border-radius: 10px;
-	--border-radius-sm: 5px;
+	--nm-md-h-secondary: 0 0 var(--nm-spread-md) var(--bg-lighter);
+	--nm-md-h-secondary: 0 0 var(--nm-spread-md) var(--bg-darker);
+	--nm-sm-h-primary: 0 0 var(--nm-spread-sm) var(--bg-lighter);
+	--nm-sm-h-secondary: 0 0 var(--nm-spread-sm) var(--bg-darker);
+	--tx: #f8f8f2;
+	--tx-accent: #6272a4;
+	--bd-radius-lg: 15px;
+	--bd-radius: 10px;
+	--bd-radius-sm: 5px;
 }
 
 ::-webkit-scrollbar {
@@ -27,19 +27,19 @@
 }
 
 ::-webkit-scrollbar-track {
-	background-color: var(--background);
-	border: var(--border-secondary) 1.5px solid;
+	background-color: var(--bg);
+	border: var(--bd-secondary) 1.5px solid;
 	border-radius: 5px;
 	box-shadow:
-		var(--nm-shadow-sm-primary) inset,
-		var(--nm-shadow-sm-secondary) inset;
+		var(--nm-sm-h-primary) inset,
+		var(--nm-sm-h-secondary) inset;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: linear-gradient(145deg, var(--scrollbar-dark), var(--scrollbar-light));
+	background: linear-gradient(145deg, var(--sb-dark), var(--sb-light));
 	box-shadow:
-		20px 20px 60px var(--scrollbar-darkest),
-		-20px -20px 60px var(--scrollbar-lightest);
+		20px 20px 60px var(--sb-darkest),
+		-20px -20px 60px var(--sb-lightest);
 	border-radius: 5px;
 }
 
@@ -50,8 +50,8 @@ body {
 }
 
 body {
-	background: var(--background);
-	color: var(--text-color);
+	background: var(--bg);
+	color: var(--tx);
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;

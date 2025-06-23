@@ -49,7 +49,7 @@
 		display: flex;
 		align-items: center;
 		flex-direction: row;
-		color: var(--text-muted);
+		color: var(--tx-muted);
 		font-weight: 300;
 		font-size: 0.8rem;
 		letter-spacing: 2px;

@@ -22,14 +22,14 @@
 		min = 0,
 		max = 100,
 		size = 100,
-		arcColor = 'var(--text-muted, #007bff)',
+		arcColor = 'var(--tx-muted, #007bff)',
 		arcWidth = 8,
-		knobColor = 'var(--background-darker)',
-		indicatorColor = 'var(--text-color, #333)',
+		knobColor = 'var(--bg-darker)',
+		indicatorColor = 'var(--tx, #333)',
 		step = 1,
 		showTicks = true,
 		tickLength = 3,
-		tickColor = 'var(--text-accent)',
+		tickColor = 'var(--tx-accent)',
 		tickWidth = 1,
 		tickOffset = 1.5 // How far out the ticks start from the arc track
 	}: Props = $props();
@@ -216,7 +216,7 @@
 			class="arc-track"
 			d={svgValueArcPathD}
 			fill="none"
-			stroke="var(--border-primary)"
+			stroke="var(--bd-primary)"
 			stroke-width={arcWidth}
 			stroke-linecap="round"
 		/>
@@ -314,13 +314,12 @@
 	.knob {
 		position: relative;
 		border-radius: 50%;
-		background: var(--background);
+		background: var(--bg);
 		border: 1px solid;
-		border-color: var(--border-primary) var(--border-secondary) var(--border-secondary)
-			var(--border-primary);
+		border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
 		box-shadow:
-			var(--nm-shadow-md-primary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff),
-			var(--nm-shadow-md-secondary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff);
+			var(--nm-md-h-secondary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff),
+			var(--nm-md-h-secondary, 2px 2px 5px #bababa, -2px -2px 5px #ffffff);
 
 		display: flex;
 		justify-content: center;
@@ -337,13 +336,13 @@
 	.knob-indicator {
 		width: calc(var(--knob-indicator-width, 4px));
 		height: 30%;
-		background: var(--indicator-color, var(--text-color));
+		background: var(--indicator-color, var(--tx));
 		border-radius: 2px;
 		margin: auto;
-		box-shadow: var(--nm-shadow-xs-primary, 1px 1px 2px #b0b0b0, -1px -1px 2px #ffffff);
+		box-shadow: var(--nm-xs-primary, 1px 1px 2px #b0b0b0, -1px -1px 2px #ffffff);
 	}
 
 	.knob:focus-visible {
-		outline: 1px solid var(--text-accent);
+		outline: 1px solid var(--tx-accent);
 	}
 </style>

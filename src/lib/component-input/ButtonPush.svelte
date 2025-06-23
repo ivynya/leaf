@@ -15,12 +15,12 @@
 	button {
 		background: transparent;
 		border: none;
-		box-shadow: var(--nm-shadow-sm-primary), var(--nm-shadow-sm-secondary);
+		box-shadow: var(--nm-sm-h-primary), var(--nm-sm-h-secondary);
 		color: inherit;
 		cursor: pointer;
 		overflow: hidden;
 
-		border-radius: var(--border-radius-sm);
+		border-radius: var(--bd-radius-sm);
 
 		height: 30px;
 		min-width: 80px;
@@ -35,11 +35,11 @@
 		position: relative;
 
 		.label {
-			background: var(--background-darker);
-			border: 1px solid var(--border-secondary);
-			border-top: 1px solid var(--border-primary);
-			border-bottom: 1px solid var(--border-secondary);
-			border-radius: var(--border-radius-sm);
+			background: var(--bg-darker);
+			border: 1px solid var(--bd-secondary);
+			border-top: 1px solid var(--bd-primary);
+			border-bottom: 1px solid var(--bd-secondary);
+			border-radius: var(--bd-radius-sm);
 			display: grid;
 			place-items: center;
 			padding: 0 5px;
@@ -52,8 +52,8 @@
 		}
 
 		.pip {
-			background: radial-gradient(var(--border-primary), var(--border-secondary));
-			box-shadow: var(--nm-shadow-sm-secondary) inset;
+			background: radial-gradient(var(--bd-primary), var(--bd-secondary));
+			box-shadow: var(--nm-sm-h-secondary) inset;
 			box-sizing: border-box;
 			display: block;
 			width: 6px;
@@ -71,20 +71,20 @@
 			transform: translateY(1px);
 		}
 		&:active .label {
-			background: var(--background);
+			background: var(--bg);
 			border-right: none;
 			border-left: none;
 			box-shadow:
-				var(--nm-shadow-sm-primary) inset,
-				var(--nm-shadow-sm-secondary) inset;
+				var(--nm-sm-h-primary) inset,
+				var(--nm-sm-h-secondary) inset;
 		}
 		&:active .pip {
 			background: #e9a559;
-			box-shadow: 0 0 2px var(--border-primary) inset;
+			box-shadow: 0 0 2px var(--bd-primary) inset;
 		}
 
 		&:not(:active) {
-			color: var(--text-color);
+			color: var(--tx);
 		}
 	}
 </style>

@@ -35,7 +35,7 @@
 
 		&::-webkit-slider-thumb {
 			@include mxn.nm-shadow-sm;
-			background-color: var(--background-darker);
+			background-color: var(--bg-darker);
 			border-radius: 50%;
 			-webkit-appearance: none;
 			appearance: none;
@@ -46,7 +46,7 @@
 
 		&::-moz-range-thumb {
 			@include mxn.nm-shadow-sm;
-			background-color: var(--background-darker);
+			background-color: var(--bg-darker);
 			border-radius: 50%;
 			-webkit-appearance: none;
 			appearance: none;

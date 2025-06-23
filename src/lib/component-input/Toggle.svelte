@@ -40,7 +40,7 @@
 
 	.slider {
 		@include mxn.nm-shadow-sm-inset;
-		border-radius: var(--border-radius-sm);
+		border-radius: var(--bd-radius-sm);
 		cursor: pointer;
 		position: absolute;
 		top: 0;
@@ -51,7 +51,7 @@
 
 		svg {
 			box-sizing: border-box;
-			color: var(--text-accent);
+			color: var(--tx-accent);
 			display: grid;
 			place-items: center;
 			height: 26px;
@@ -65,8 +65,8 @@
 
 		&::before {
 			@include mxn.nm-shadow-sm;
-			background-color: var(--background-darker);
-			border-radius: var(--border-radius-sm);
+			background-color: var(--bg-darker);
+			border-radius: var(--bd-radius-sm);
 			content: '';
 			height: 30px;
 			width: 30px;

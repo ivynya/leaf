@@ -19,14 +19,13 @@
 
 <style lang="scss">
 	.slider {
-		background: var(--background);
-		border: 1px solid var(--text-accent);
-		border-color: var(--border-primary) var(--border-secondary) var(--border-secondary)
-			var(--border-primary);
+		background: var(--bg);
+		border: 1px solid var(--tx-accent);
+		border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
 		border-radius: 15px;
 		box-shadow:
-			var(--nm-shadow-sm-primary) inset,
-			var(--nm-shadow-sm-secondary) inset;
+			var(--nm-sm-h-primary) inset,
+			var(--nm-sm-h-secondary) inset;
 		height: 18px;
 		flex: 1 1;
 		padding: 5px 0;
@@ -34,11 +33,11 @@
 		z-index: 5;
 
 		span {
-			background-color: var(--background-darker);
-			border: 1px solid var(--text-muted);
+			background-color: var(--bg-darker);
+			border: 1px solid var(--tx-muted);
 			box-sizing: border-box;
 			transition: transform 0.5s;
-			box-shadow: var(--nm-shadow-sm-secondary);
+			box-shadow: var(--nm-sm-h-secondary);
 			display: block;
 			height: 32px;
 			margin: auto 0;
@@ -48,9 +47,8 @@
 			bottom: -30px;
 			z-index: -1;
 			border-radius: 15px;
-			border-color: var(--border-primary) var(--border-secondary) var(--border-secondary)
-				var(--border-primary);
-			box-shadow: var(--nm-shadow-sm-primary), var(--nm-shadow-sm-secondary);
+			border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
+			box-shadow: var(--nm-sm-h-primary), var(--nm-sm-h-secondary);
 		}
 
 		.options {
@@ -81,7 +79,7 @@
 			transition-duration: 0.2s;
 
 			&:not(.active) {
-				color: var(--text-accent);
+				color: var(--tx-accent);
 			}
 		}
 	}

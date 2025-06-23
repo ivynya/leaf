@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 import type { HSLColor, LightingConditions } from '$lib/schema.ts';
 
 const colors = [
-	{ h: 231, s: 15, l: 18 },
+	{ h: 212, s: 50, l: 15 },
 	{ h: 38, s: 35, l: 83 },
 	{ h: 28, s: 47, l: 87 },
 	{ h: 10, s: 10, l: 88 },
@@ -98,57 +98,59 @@ export function updateCurrentDayPercentage() {
 	currentDayPercentage.set(getCurrentDayPercentage());
 }
 
+function lighten(c: string, a: number): tinycolor.Instance {
+	return tinycolor(c).lighten(a);
+}
+function darken(c: string, a: number): tinycolor.Instance {
+	return tinycolor(c).darken(a);
+}
+
+// If light, darkens the color, and if dark, lightens the color
+function modify(c: string, l: boolean, a: number): tinycolor.Instance {
+	if (l) return tinycolor(c).darken(a);
+	else return tinycolor(c).lighten(a);
+}
+
 export function generateStylesheet(l: LightingConditions): string {
 	const vx = -l.v; // mirrors along l.vertical axis
 	const wx = -l.w; // mirrors along horizontal axis
 
-	// Generate scrollbar colors based on light/dark
-	const scrollbar = l.isLight
-		? `
-		--scrollbar-lightest: ${tinycolor(l.color).darken(10).toHexString()};
-		--scrollbar-light: ${tinycolor(l.color).darken(10).toHexString()};
-		--scrollbar-dark: ${tinycolor(l.color).darken(15).toHexString()};
-		--scrollbar-darkest: ${tinycolor(l.color).darken(10).toHexString()};
-	`
-		: `
-		--scrollbar-lightest: ${tinycolor(l.color).lighten(10).toHexString()};
-		--scrollbar-light: ${tinycolor(l.color).lighten(10).toHexString()};
-		--scrollbar-dark: ${tinycolor(l.color).lighten(15).toHexString()};
-		--scrollbar-darkest: ${tinycolor(l.color).lighten(10).toHexString()};
-	`;
-
-	// Generate color l.variations based on gil.ven color
+	// Generate color l.variations based on given color
 	return `
-		--background: ${tinycolor(l.color).toHexString()};
-		--background-transparent: ${tinycolor(l.color).toHexString()}00;
-		--background-lighter: ${tinycolor(l.color).lighten(4).toHexString()};
-		--background-darker: ${tinycolor(l.color).darken(12).toHexString()};
+		--bg: ${tinycolor(l.color).toHexString()};
+		--bg-t8: ${tinycolor(l.color).toHexString()}88;
+		--bg-t0: ${tinycolor(l.color).toHexString()}00;
+		--bg-lighter-t8: ${lighten(l.color, 4).toHexString()}88;
+		--bg-lighter: ${lighten(l.color, 4).toHexString()};
+		--bg-light: ${lighten(l.color, 3).toHexString()};
+		--bg-dark: ${darken(l.color, 5).toHexString()};
+		--bg-darker: ${darken(l.color, l.isLight ? 12 : 8).toHexString()};
+		--bg-darker-t8: ${darken(l.color, l.isLight ? 12 : 8).toHexString()}88;
 
-		--border-primary: ${tinycolor(l.color).lighten(5).toHexString()};
-		--border-secondary: ${tinycolor(l.color).lighten(2).toHexString()};
+		--bd-primary: ${tinycolor(l.color).lighten(5).toHexString()};
+		--bd-secondary: ${tinycolor(l.color).lighten(2).toHexString()};
+		--bd-radius-lg: 15px;
+		--bd-radius-md: 10px;
+		--bd-radius-sm: 5px;
 
-		${scrollbar}
+		--sb-lightest: ${modify(l.color, l.isLight, 10).toHexString()};
+		--sb-light: ${modify(l.color, l.isLight, 10).toHexString()};
+		--sb-dark: ${modify(l.color, l.isLight, 15).toHexString()};
+		--sb-darkest: ${modify(l.color, l.isLight, 10).toHexString()};
 
-		--nm-shadow-md-primary: ${shadow(vx, wx, 6, 'md')} var(--background-lighter);
-		--nm-shadow-md-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--background-darker);
+		--nm-md-h-primary: ${shadow(vx, wx, 6, 'md')} var(--bg-lighter);
+		--nm-md-h-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--bg-darker);
+		--nm-md-b-primary: ${shadow(vx, wx, 6, 'md')} var(--bg-lighter-t8);
+		--nm-md-b-secondary: ${shadow(l.v, l.w, 6, 'md')} var(--bg-darker-t8);
 
-		--nm-shadow-sm-primary: ${shadow(vx, wx, 3, 'sm')} var(--background-lighter);
-		--nm-shadow-sm-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--background-darker);
+		--nm-sm-h-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter);
+		--nm-sm-h-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker);
+		--nm-sm-b-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t8);
+		--nm-sm-b-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t8);
 
-		--text-color: ${l.isLight ? '#555' : '#f8f8f2'};
-		--text-muted: ${
-			l.isLight
-				? tinycolor(l.color).darken(25).toHexString()
-				: tinycolor(l.color).lighten(45).toHexString()
-		};
-		--text-accent: ${
-			l.isLight
-				? tinycolor(l.color).darken(25).toHexString()
-				: tinycolor(l.color).lighten(30).toHexString()
-		};
-
-		--border-radius: 10px;
-		--border-radius-sm: 5px;
+		--tx: ${l.isLight ? '#555' : '#f8f8f2'};
+		--tx-muted: ${l.isLight ? darken(l.color, 25).toHexString() : lighten(l.color, 45).toHexString()};
+		--tx-accent: ${l.isLight ? darken(l.color, 25).toHexString() : lighten(l.color, 30).toHexString()};
 	`;
 }
 

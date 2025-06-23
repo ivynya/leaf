@@ -7,6 +7,13 @@
 	<div style="background-color: var(--bg);">bg</div>
 	<div style="background-color: var(--bg-dark);">bg-dark</div>
 	<div style="background-color: var(--bg-darker);">bg-darker</div>
+
+	<div class="secondary" style="background-color: var(--bg-lighter-t9);">bg-lighter-t9</div>
+	<div class="secondary" style="background-color: var(--bg-lighter-t5);">bg-lighter-t5</div>
+	<div class="secondary" style="background-color: var(--bg-t8);">bg-t8</div>
+	<div class="secondary" style="background-color: var(--bg-darker-t5);">bg-darker-t5</div>
+	<div class="secondary" style="background-color: var(--bg-darker-t9);">bg-darker-t9</div>
+
 	<div style="background-color: var(--tx);">tx</div>
 	<div style="background-color: var(--tx-accent);">tx-accent</div>
 	<div style="background-color: var(--tx-muted);">tx-muted</div>
@@ -31,6 +38,10 @@
 			width: 100%;
 			height: 60px;
 			padding: 5px;
+
+			&.secondary {
+				height: 35px;
+			}
 		}
 	}
 </style>

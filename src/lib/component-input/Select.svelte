@@ -4,6 +4,8 @@
 	$: active = Math.abs(options.findIndex((o) => o === selected));
 	$: ratchet = 100 / options.length;
 	$: leftness = active * 100;
+
+	export let flat = false;
 </script>
 
 <div class="slider">
@@ -34,10 +36,12 @@
 
 		span {
 			background-color: var(--bg-darker);
-			border: 1px solid var(--tx-muted);
+			border: 1px solid;
+			border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
+			border-radius: 15px;
+			box-shadow: var(--nm-sm-hb-primary), var(--nm-sm-h-secondary);
 			box-sizing: border-box;
 			transition: transform 0.5s;
-			box-shadow: var(--nm-sm-h-secondary);
 			display: block;
 			height: 32px;
 			margin: auto 0;
@@ -46,40 +50,38 @@
 			top: -30px;
 			bottom: -30px;
 			z-index: -1;
-			border-radius: 15px;
-			border-color: var(--bd-primary) var(--bd-secondary) var(--bd-secondary) var(--bd-primary);
-			box-shadow: var(--nm-sm-h-primary), var(--nm-sm-h-secondary);
 		}
 
 		.options {
 			display: flex;
 			align-items: center;
 			height: 100%;
-		}
-		.options button {
-			background-color: transparent;
-			border: none;
-			color: inherit;
-			cursor: pointer;
-			display: grid;
-			place-items: center;
-			flex: 1 1;
 
-			padding: auto 0;
-			margin: auto 0;
-			min-height: 100%;
-			min-width: 80px;
+			button {
+				background-color: transparent;
+				border: none;
+				color: inherit;
+				cursor: pointer;
+				display: grid;
+				place-items: center;
+				flex: 1 1;
 
-			line-height: 1;
-			font-family: inherit;
-			font-size: 0.6rem;
-			letter-spacing: 1px;
-			text-align: center;
-			text-transform: uppercase;
-			transition-duration: 0.2s;
+				padding: auto 0;
+				margin: auto 0;
+				min-height: 100%;
+				min-width: 80px;
 
-			&:not(.active) {
-				color: var(--tx-accent);
+				line-height: 1;
+				font-family: inherit;
+				font-size: 0.6rem;
+				letter-spacing: 1px;
+				text-align: center;
+				text-transform: uppercase;
+				transition-duration: 0.2s;
+
+				&:not(.active) {
+					color: var(--tx-accent);
+				}
 			}
 		}
 	}

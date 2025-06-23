@@ -37,6 +37,7 @@
 			@include mxn.nm-shadow-sm;
 			background-color: var(--bg-darker);
 			border-radius: 50%;
+			box-shadow: var(--nm-sm-hb-primary), var(--nm-sm-h-secondary);
 			-webkit-appearance: none;
 			appearance: none;
 			height: var(--slider-thumb-size);
@@ -48,6 +49,7 @@
 			@include mxn.nm-shadow-sm;
 			background-color: var(--bg-darker);
 			border-radius: 50%;
+			box-shadow: var(--nm-sm-hb-primary), var(--nm-sm-h-secondary);
 			-webkit-appearance: none;
 			appearance: none;
 			height: var(--slider-thumb-size);

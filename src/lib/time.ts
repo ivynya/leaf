@@ -115,17 +115,21 @@ export function generateStylesheet(l: LightingConditions): string {
 	const vx = -l.v; // mirrors along l.vertical axis
 	const wx = -l.w; // mirrors along horizontal axis
 
+	const c = 1.5; // contrast multiplier for relevant colors
+
 	// Generate color l.variations based on given color
 	return `
 		--bg: ${tinycolor(l.color).toHexString()};
 		--bg-t8: ${tinycolor(l.color).toHexString()}88;
 		--bg-t0: ${tinycolor(l.color).toHexString()}00;
+		--bg-lighter-t9: ${lighten(l.color, 4).toHexString()}99;
 		--bg-lighter-t5: ${lighten(l.color, 4).toHexString()}55;
 		--bg-lighter: ${lighten(l.color, 4).toHexString()};
 		--bg-light: ${lighten(l.color, 3).toHexString()};
-		--bg-dark: ${darken(l.color, 5).toHexString()};
-		--bg-darker: ${darken(l.color, l.isLight ? 12 : 8).toHexString()};
-		--bg-darker-t5: ${darken(l.color, l.isLight ? 12 : 8).toHexString()}55;
+		--bg-dark: ${darken(l.color, 4).toHexString()};
+		--bg-darker: ${darken(l.color, l.isLight ? 12 : 6).toHexString()};
+		--bg-darker-t5: ${darken(l.color, l.isLight ? 12 : 6).toHexString()}55;
+		--bg-darker-t9: ${darken(l.color, l.isLight ? 12 : 6).toHexString()}99;
 
 		--bd-primary: ${tinycolor(l.color).lighten(5).toHexString()};
 		--bd-secondary: ${tinycolor(l.color).lighten(2).toHexString()};
@@ -145,6 +149,8 @@ export function generateStylesheet(l: LightingConditions): string {
 
 		--nm-sm-h-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter);
 		--nm-sm-h-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker);
+		--nm-sm-hb-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t9);
+		--nm-sm-hb-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t9);
 		--nm-sm-b-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t5);
 		--nm-sm-b-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t5);
 

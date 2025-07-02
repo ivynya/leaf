@@ -7,6 +7,7 @@
 	import Slider from '$lib/component-input/Slider.svelte';
 	import Toggle from '$lib/component-input/Toggle.svelte';
 	import Colors from './Colors.svelte';
+	import Glass from '$lib/component-decorative/Glass.svelte';
 	import Warp from './Warp.svelte';
 </script>
 
@@ -19,13 +20,16 @@
 		Versatile set of components that can be styled dynamically by nearly any one base color. Should
 		be able to construct nearly any kind of application using these components, styles, and
 		guidelines. Components should stand out and be recongizable as interactive elements.
-		Skeumorphism should be present to some extent with some minimal changes able to be made for
-		accessibility and clarity.
+	</p>
+	<p>
+		The primary feature of this design system is the thematic versatility - therefore, it comes in
+		standard and flat variants. Either may be used as seen fit.
 	</p>
 	<div class="cols">
 		<div>
 			<h2>Change Time of Day</h2>
 			<Warp />
+			<Glass />
 		</div>
 		<div>
 			<h2>Color Output</h2>
@@ -34,10 +38,10 @@
 	</div>
 
 	<br />
-	<h2>Example Components</h2>
 	<section class="components">
 		<div class="cols">
 			<div>
+				<h2>Standard Components</h2>
 				<Slider
 					value={0.01}
 					label="Slider Example"
@@ -52,8 +56,6 @@
 					options={['Option 1', 'Option 2', 'Option 3', 'Option 4']}
 					selected="Option 2"
 				/>
-			</div>
-			<div>
 				<Toggle
 					iconOn="check"
 					iconOff="x"
@@ -63,6 +65,21 @@
 				<Rotary max={10} />
 				<ButtonIcon title="check" icon="check" />
 				<ButtonPush label="meow" push={() => {}} />
+			</div>
+			<div>
+				<h2>Flat Variant</h2>
+				<Slider
+					value={0.01}
+					label="Slider Example"
+					on:change={() => console.log('Slider changed')}
+					flat
+				/>
+				<Select
+					options={['Option 1', 'Option 2', 'Option 3']}
+					selected="Option 2"
+					on:change={() => console.log('Select changed')}
+					flat
+				/>
 			</div>
 		</div>
 	</section>

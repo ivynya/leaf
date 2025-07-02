@@ -2,11 +2,14 @@
 	export let big = false;
 	export let value = 0;
 	export let label: string;
+	export let flat: boolean = false;
 </script>
 
 <input
 	class="slider"
 	class:big
+	class:flat
+	style="--slider-percentage: {value * 100}%"
 	type="range"
 	max="1"
 	min="0"
@@ -30,8 +33,9 @@
 		margin: 5px 0;
 		width: 100%;
 		outline: none;
+		position: relative;
 
-		--slider-thumb-size: 25px;
+		--slider-thumb-size: 30px;
 
 		&::-webkit-slider-thumb {
 			@include mxn.nm-shadow-sm;
@@ -55,6 +59,40 @@
 			height: var(--slider-thumb-size);
 			width: var(--slider-thumb-size);
 			cursor: pointer; /* Cursor on hover */
+		}
+
+		&.flat {
+			background-color: var(--bg-darker);
+			border: none;
+			box-shadow: none;
+			height: 1.5px;
+
+			&::before {
+				border-radius: 1px;
+				content: '';
+				position: absolute;
+				top: calc(50% - 1px);
+				left: 0;
+				right: 0;
+				height: 2px;
+				background-color: var(--ax);
+				width: var(--slider-percentage, 0%);
+			}
+
+			&::-webkit-slider-thumb {
+				background-color: var(--bg);
+				border: 2px solid var(--ax);
+				box-shadow: none;
+				position: relative;
+				z-index: 1;
+			}
+			&::-moz-range-thumb {
+				background-color: var(--bg);
+				border: 2px solid var(--ax);
+				box-shadow: none;
+				position: relative;
+				z-index: 1;
+			}
 		}
 	}
 </style>

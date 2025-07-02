@@ -8,7 +8,7 @@
 	export let flat = false;
 </script>
 
-<div class="slider">
+<div class="slider" class:flat>
 	<span style="transform:translateX({leftness}%);width:{ratchet}%;"></span>
 	<div class="options">
 		{#each options as o, i}
@@ -33,6 +33,18 @@
 		padding: 5px 0;
 		position: relative;
 		z-index: 5;
+
+		&.flat {
+			border: 1px dotted var(--tx-accent);
+			box-shadow: none;
+
+			span {
+				background-color: transparent;
+				border: 2px solid var(--ax);
+				box-shadow: none;
+				height: 31px;
+			}
+		}
 
 		span {
 			background-color: var(--bg-darker);

@@ -159,7 +159,7 @@
 			}
 			&.active:first-child .label {
 				box-shadow:
-					var(--nm-sm-h-primary) inset,
+					var(--nm-sm-hb-primary) inset,
 					var(--nm-sm-h-secondary) inset;
 			}
 			&.active .pip {

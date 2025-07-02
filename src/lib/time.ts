@@ -106,7 +106,7 @@ function darken(c: string, a: number): tinycolor.Instance {
 }
 
 // If light, darkens the color, and if dark, lightens the color
-function modify(c: string, l: boolean, a: number): tinycolor.Instance {
+function modify(c: string | tinycolor.Instance, l: boolean, a: number): tinycolor.Instance {
 	if (l) return tinycolor(c).darken(a);
 	else return tinycolor(c).lighten(a);
 }
@@ -154,9 +154,13 @@ export function generateStylesheet(l: LightingConditions): string {
 		--nm-sm-b-primary: ${shadow(vx, wx, 3, 'sm')} var(--bg-lighter-t5);
 		--nm-sm-b-secondary: ${shadow(l.v, l.w, 3, 'sm')} var(--bg-darker-t5);
 
-		--tx: ${l.isLight ? '#555' : '#f8f8f2'};
-		--tx-muted: ${l.isLight ? darken(l.color, 25).toHexString() : lighten(l.color, 45).toHexString()};
-		--tx-accent: ${l.isLight ? darken(l.color, 25).toHexString() : lighten(l.color, 30).toHexString()};
+		--ax-lighter: ${modify(tinycolor(l.color).complement().saturate(30), l.isLight, 10).toHexString()};
+		--ax: ${modify(tinycolor(l.color).complement().saturate(30), l.isLight, 20).toHexString()};
+		--ax-darker: ${modify(tinycolor(l.color).complement().saturate(30), l.isLight, 30).toHexString()};
+
+		--tx: ${l.isLight ? '#555' : '#f8f5f0'};
+		--tx-muted: ${l.isLight ? darken(l.color, 20).toHexString() : lighten(l.color, 45).toHexString()};
+		--tx-accent: ${l.isLight ? darken(l.color, 30).toHexString() : lighten(l.color, 30).toHexString()};
 	`;
 }
 

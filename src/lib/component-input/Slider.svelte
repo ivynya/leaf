@@ -67,6 +67,8 @@
 			box-shadow: none;
 			height: 1.5px;
 
+			--slider-thumb-size: 20px;
+
 			&::before {
 				border-radius: 1px;
 				content: '';

@@ -6,13 +6,10 @@
 	import Select from '$lib/component-input/Select.svelte';
 	import Slider from '$lib/component-input/Slider.svelte';
 	import Toggle from '$lib/component-input/Toggle.svelte';
-	import Colors from './Colors.svelte';
 	import Glass from '$lib/component-decorative/Glass.svelte';
-	import Warp from './Warp.svelte';
 </script>
 
 <div>
-	<h1>@ivynya/leaf</h1>
 	<h2>Design Requirements</h2>
 	<p>
 		Versatile set of components that can be styled dynamically by nearly any one base color. Should
@@ -23,17 +20,6 @@
 		The primary feature of this design system is the thematic versatility - therefore, it comes in
 		standard and flat variants. Either may be used as seen fit.
 	</p>
-	<div class="cols">
-		<div>
-			<h2>Change Time of Day</h2>
-			<Warp />
-		</div>
-		<div>
-			<h2>Color Output</h2>
-			<Colors />
-		</div>
-	</div>
-
 	<br />
 	<section class="components">
 		<div class="cols">
@@ -87,7 +73,7 @@
 	.cols {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 5rem;
+		gap: 3rem;
 		align-items: flex-start;
 	}
 

@@ -37,14 +37,16 @@
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
-		gap: 0.125rem;
+		gap: 0.1rem;
 
 		div {
-			border-radius: 0.125rem;
+			border-radius: 0.1rem;
 			box-sizing: border-box;
-			font-size: 0.7rem;
+			font-family: 'IBM Plex Mono', monospace;
+			font-size: 0.6rem;
+			font-weight: 400;
 			width: 100%;
-			height: 55px;
+			height: 45px;
 			padding: 5px;
 
 			&.secondary {

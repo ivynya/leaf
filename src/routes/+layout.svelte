@@ -3,6 +3,8 @@
 	import '$lib/styles/fnt.scss';
 	import { onMount } from 'svelte';
 	import { stylesheet, isLight } from '$lib/index';
+	import Colors from './Colors.svelte';
+	import Warp from './Warp.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -17,14 +19,43 @@
 	});
 </script>
 
+<header>
+	<h1>@ivynya/leaf</h1>
+</header>
 <main>
-	{@render children?.()}
+	<section>
+		{@render children?.()}
+	</section>
+	<section class="global-options">
+		<h2>Color Output</h2>
+		<Colors />
+		<br />
+		<h2>Time of Day</h2>
+		<Warp />
+	</section>
 </main>
 
 <style lang="scss">
-	main {
+	main,
+	header {
+		display: flex;
+		gap: 4rem;
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0.5rem 1rem;
+		padding: 0.25rem 1rem;
+	}
+
+	h1 {
+		margin-bottom: 0;
+	}
+
+	section {
+		flex: 2 1;
+	}
+
+	.global-options {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1;
 	}
 </style>

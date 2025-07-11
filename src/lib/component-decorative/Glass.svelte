@@ -1,7 +1,18 @@
-<div class="glass"></div>
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+	let { children }: Props = $props();
+</script>
+
+<div class="glass">
+	{@render children?.()}
+</div>
 
 <style lang="scss">
 	.glass {
+		background: var(--bg-darker-t5);
+		backdrop-filter: blur(2px);
 		border: 3px solid var(--bg-lighter-t5);
 		border-radius: 20px;
 		box-shadow:
@@ -22,12 +33,20 @@
 			var(--nm-md-h-secondary),
 			var(--nm-md-b-primary) inset,
 			var(--nm-md-h-secondary) inset;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 		margin: 20px 0;
 		min-width: 200px;
 		width: fit-content;
 		min-height: 200px;
 		height: fit-content;
-		background: var(--bg-darker-t5);
-		backdrop-filter: blur(2px);
+		padding: 1rem;
+
+		:global(*) {
+			opacity: 0.9;
+			--nm-sm-h-primary: var(--nm-sm-b-primary);
+			--nm-sm-h-secondary: var(--nm-sm-b-secondary);
+		}
 	}
 </style>

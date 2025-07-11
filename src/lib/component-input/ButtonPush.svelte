@@ -71,11 +71,11 @@
 			transform: translateY(1px);
 		}
 		&:active .label {
-			background: var(--bg);
+			background: var(--bg-dark);
 			border-right: none;
 			border-left: none;
 			box-shadow:
-				var(--nm-sm-h-primary) inset,
+				var(--nm-sm-hb-primary) inset,
 				var(--nm-sm-h-secondary) inset;
 		}
 		&:active .pip {

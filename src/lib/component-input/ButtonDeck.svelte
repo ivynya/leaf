@@ -154,11 +154,6 @@
 				border-right: none;
 				border-left: none;
 				box-shadow:
-					var(--nm-sm-b-primary) inset,
-					var(--nm-sm-b-secondary) inset;
-			}
-			&.active:first-child .label {
-				box-shadow:
 					var(--nm-sm-hb-primary) inset,
 					var(--nm-sm-h-secondary) inset;
 			}

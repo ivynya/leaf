@@ -13,8 +13,6 @@
 
 <div>
 	<h1>@ivynya/leaf</h1>
-	<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-
 	<h2>Design Requirements</h2>
 	<p>
 		Versatile set of components that can be styled dynamically by nearly any one base color. Should
@@ -29,7 +27,6 @@
 		<div>
 			<h2>Change Time of Day</h2>
 			<Warp />
-			<Glass />
 		</div>
 		<div>
 			<h2>Color Output</h2>
@@ -65,6 +62,7 @@
 				<Rotary max={10} />
 				<ButtonIcon title="check" icon="check" />
 				<ButtonPush label="meow" push={() => {}} />
+				<Glass />
 			</div>
 			<div>
 				<h2>Flat Variant</h2>

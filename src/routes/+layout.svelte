@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '$lib/styles/app.scss';
+	import '$lib/styles/fnt.scss';
 	import { onMount } from 'svelte';
 	import { stylesheet, isLight } from '$lib/index';
 

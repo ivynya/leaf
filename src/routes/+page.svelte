@@ -17,10 +17,6 @@
 	able to construct nearly any kind of application using these components, styles, and guidelines.
 	Components should stand out and be recongizable as interactive elements.
 </p>
-<p>
-	The primary feature of this design system is the thematic versatility - therefore, it comes in
-	standard and flat variants. Either may be used as seen fit.
-</p>
 <section class="components">
 	<h2>Component Examples</h2>
 	<Select

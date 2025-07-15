@@ -29,17 +29,5 @@
 		z-index: 5;
 		top: 50px;
 		right: 100px;
-
-		:global(*) {
-			opacity: 0.95;
-			--bg-lighter: var(--bg-lighter-td);
-			--bg-light: var(--bg-t8);
-			--bg: var(--bg-td);
-			--bg-dark: var(--bg-t8);
-			--bg-darker: var(--bg-darker-td);
-			--nm-sm-h-primary: var(--nm-sm-hb-secondary);
-			--nm-sm-hb-primary: var(--nm-sm-b-secondary);
-			--nm-md-h-primary: var(--nm-md-h-secondary);
-		}
 	}
 </style>

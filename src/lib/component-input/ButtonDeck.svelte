@@ -67,6 +67,8 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/styles/mxn.scss';
+
 	.select {
 		display: flex;
 		align-items: center;
@@ -169,17 +171,16 @@
 	}
 
 	.dropdown-menu {
+		@include mxn.glass-sm;
 		border-radius: var(--bd-radius-sm);
-		box-shadow: var(--nm-md-h-primary), var(--nm-md-h-secondary);
-		backdrop-filter: blur(3px);
-		background-blend-mode: revert;
 		position: absolute;
-		top: calc(100% + 1rem);
+		top: calc(100% + 0.5rem);
 		right: 0;
-		width: 60%;
+		min-width: 25%;
+		width: fit-content;
 		list-style: none;
-		padding: 0.5rem 0;
 		margin: 0;
+		padding: 0;
 		z-index: 1;
 		max-height: 200px;
 		overflow-y: auto;
@@ -187,19 +188,15 @@
 
 	.dropdown-menu li {
 		padding: 0.75rem 1rem;
-		color: var(--tx-muted);
 		cursor: pointer;
 		font-size: 0.7rem;
 		text-transform: uppercase;
-		transition:
-			background-color 0.15s ease-out,
-			color 0.15s ease-out;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 
 		&:hover {
-			background-color: var(--bg-darker);
+			background-color: var(--bg-darker-t5);
 		}
 
 		&.selected {
@@ -208,8 +205,8 @@
 
 		&:focus,
 		&:focus-visible {
+			background-color: var(--bg-darker-t5);
 			outline: none; // Remove default outline
-			background-color: var(--bg-darker);
 		}
 	}
 </style>

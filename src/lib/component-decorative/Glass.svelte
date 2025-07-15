@@ -1,38 +1,21 @@
 <script lang="ts">
+	import { isLight } from '$lib/time';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
 	let { children }: Props = $props();
 </script>
 
-<div class="glass">
+<div class="glass" class:isDark={!$isLight}>
 	{@render children?.()}
 </div>
 
 <style lang="scss">
+	@use '$lib/styles/mxn.scss';
+
 	.glass {
-		background: var(--bg-darker-t5);
-		backdrop-filter: blur(2px);
-		border: 3px solid var(--bg-lighter-t5);
-		border-radius: 20px;
-		box-shadow:
-			0px 1px 0 var(--bg-lighter-t5),
-			0px 3px 0 var(--bg-lighter-t5),
-			0px 4px 0 var(--bg-lighter-t5),
-			0px 5px 0 var(--bg-lighter-t5),
-			-1px 1px 0 var(--bg-lighter-t5),
-			-1px 2px 0 var(--bg-lighter-t5),
-			-1px 3px 0 var(--bg-lighter-t5),
-			-1px 6px 0 var(--bg-lighter-t5),
-			-2px 2px 0 var(--bg-lighter-t5),
-			-2px 4px 0 var(--bg-lighter-t5),
-			-2px 5px 0 var(--bg-lighter-t5),
-			var(--nm-md-b-primary) inset,
-			var(--nm-md-h-secondary) inset,
-			var(--nm-md-b-primary),
-			var(--nm-md-h-secondary),
-			var(--nm-md-b-primary) inset,
-			var(--nm-md-h-secondary) inset;
+		@include mxn.glass;
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
@@ -42,11 +25,21 @@
 		min-height: 200px;
 		height: fit-content;
 		padding: 1rem;
+		position: absolute;
+		z-index: 5;
+		top: 50px;
+		right: 100px;
 
 		:global(*) {
-			opacity: 0.9;
-			--nm-sm-h-primary: var(--nm-sm-b-primary);
-			--nm-sm-h-secondary: var(--nm-sm-b-secondary);
+			opacity: 0.95;
+			--bg-lighter: var(--bg-lighter-td);
+			--bg-light: var(--bg-t8);
+			--bg: var(--bg-td);
+			--bg-dark: var(--bg-t8);
+			--bg-darker: var(--bg-darker-td);
+			--nm-sm-h-primary: var(--nm-sm-hb-secondary);
+			--nm-sm-hb-primary: var(--nm-sm-b-secondary);
+			--nm-md-h-primary: var(--nm-md-h-secondary);
 		}
 	}
 </style>

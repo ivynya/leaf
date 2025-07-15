@@ -7,8 +7,7 @@
 	import Slider from '$lib/component-input/Slider.svelte';
 	import Toggle from '$lib/component-input/Toggle.svelte';
 	import Glass from '$lib/component-decorative/Glass.svelte';
-
-	let flat = false;
+	import { flat } from '$lib/internal/app';
 </script>
 
 <h2>Design Requirements</h2>
@@ -23,9 +22,15 @@
 		options={['Option 1', 'Option 2', 'Option 3']}
 		selected="Option 2"
 		on:change={() => console.log('Select changed')}
-		bind:flat
+		bind:flat={$flat}
 	/>
 	<ButtonDeck options={['Option 1', 'Option 2', 'Option 3', 'Option 4']} selected="Option 2" />
+	<Slider
+		value={0.01}
+		label="Slider Example"
+		on:change={() => console.log('Slider changed')}
+		bind:flat={$flat}
+	/>
 	<Toggle iconOn="check" iconOff="x" state={true} on:change={() => console.log('Toggle changed')} />
 	<Rotary max={10} />
 	<ButtonIcon title="check" icon="check" />
@@ -35,7 +40,7 @@
 			value={0.01}
 			label="Slider Example"
 			on:change={() => console.log('Slider changed')}
-			bind:flat
+			bind:flat={$flat}
 		/>
 		<ButtonIcon title="check" icon="check" />
 		<ButtonPush label="meow" push={() => {}} />

@@ -2,9 +2,11 @@
 	import '$lib/styles/app.scss';
 	import '$lib/styles/fnt.scss';
 	import { onMount } from 'svelte';
-	import { stylesheet, isLight } from '$lib/index';
+	import { flat } from '$lib/internal/app';
+	import { stylesheet, isLight, updateCurrentDayPercentage } from '$lib/index';
 	import Colors from './Colors.svelte';
 	import Warp from './Warp.svelte';
+	import Toggle from '$lib/component-input/Toggle.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -32,6 +34,9 @@
 		<br />
 		<h2>Time of Day</h2>
 		<Warp />
+		<br />
+		<h2>Style Options</h2>
+		<Toggle iconOn="check" iconOff="x" bind:state={$flat} />
 	</section>
 </main>
 

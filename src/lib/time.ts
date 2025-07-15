@@ -120,8 +120,10 @@ export function generateStylesheet(l: LightingConditions): string {
 	// Generate color l.variations based on given color
 	return `
 		--bg: ${tinycolor(l.color).toHexString()};
+		--bg-td: ${tinycolor(l.color).toHexString()}dd;
 		--bg-t8: ${tinycolor(l.color).toHexString()}88;
 		--bg-t0: ${tinycolor(l.color).toHexString()}00;
+		--bg-lighter-td: ${lighten(l.color, 4).toHexString()}dd;
 		--bg-lighter-t9: ${lighten(l.color, 4).toHexString()}99;
 		--bg-lighter-t5: ${lighten(l.color, 4).toHexString()}55;
 		--bg-lighter: ${lighten(l.color, 4).toHexString()};
@@ -130,6 +132,7 @@ export function generateStylesheet(l: LightingConditions): string {
 		--bg-darker: ${darken(l.color, l.isLight ? 12 : 6).toHexString()};
 		--bg-darker-t5: ${darken(l.color, l.isLight ? 12 : 6).toHexString()}55;
 		--bg-darker-t9: ${darken(l.color, l.isLight ? 12 : 6).toHexString()}99;
+		--bg-darker-td: ${darken(l.color, l.isLight ? 12 : 6).toHexString()}dd;
 
 		--bd-primary: ${tinycolor(l.color).lighten(5).toHexString()};
 		--bd-secondary: ${tinycolor(l.color).lighten(2).toHexString()};

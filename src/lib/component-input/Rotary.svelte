@@ -16,6 +16,7 @@
 		tickColor?: string;
 		tickWidth?: number;
 		tickOffset?: number; // Distance ticks are offset from the main arc track
+		label?: string; // Text label to display around the knob
 	}
 	let {
 		value = $bindable(0),
@@ -31,8 +32,17 @@
 		tickLength = 3,
 		tickColor = 'var(--tx-accent)',
 		tickWidth = 1,
-		tickOffset = 1.5 // How far out the ticks start from the arc track
+		tickOffset = 1.5, // How far out the ticks start from the arc track
+		label = ''
 	}: Props = $props();
+
+	const labelMaxLength = 15;
+	let labelFreeSpace = $derived(Math.max(Math.floor(labelMaxLength - label.length) / 2 - 1, 0));
+	let labelStylized = $derived(
+		label && !showTicks
+			? `${''.padStart(labelFreeSpace, '•')} ${label} ${''.padStart(labelFreeSpace, '•')}`
+			: ''
+	);
 
 	// Constants for VALUE ARC geometry
 	const VALUE_ARC_TOTAL_SWEEP_DEGREES = 180;
@@ -73,19 +83,34 @@
 		cx: number,
 		cy: number,
 		r: number,
-		startVisualAngle: number,
-		sweepDegrees: number
+		startAngle: number,
+		endAngle: number
 	): string {
-		const finalSvgStartAngle = 90 - startVisualAngle;
-		const finalSvgEndAngle = 90 - (startVisualAngle + sweepDegrees);
+		const start = polarToCartesian(cx, cy, r, endAngle + 180);
+		const end = polarToCartesian(cx, cy, r, startAngle + 180);
 
-		const finalStartPoint = polarToCartesian(cx, cy, r, finalSvgStartAngle);
-		const finalEndPoint = polarToCartesian(cx, cy, r, finalSvgEndAngle);
+		const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
 
-		const largeArcFlag = sweepDegrees > 180 ? '1' : '0';
-		const sweepFlag = '0'; // 0 for CW sweep in SVG terms
+		const d = ['M', start.x, start.y, 'A', r, r, 0, largeArcFlag, 0, end.x, end.y].join(' ');
 
-		return `M ${finalStartPoint.x} ${finalStartPoint.y} A ${r} ${r} 0 ${largeArcFlag} ${sweepFlag} ${finalEndPoint.x} ${finalEndPoint.y}`;
+		return d;
+	}
+
+	function describeArcPathReversed(
+		cx: number,
+		cy: number,
+		r: number,
+		startAngle: number,
+		endAngle: number
+	): string {
+		const start = polarToCartesian(cx, cy, r, startAngle + 180);
+		const end = polarToCartesian(cx, cy, r, endAngle + 180);
+
+		const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+
+		const d = ['M', start.x, start.y, 'A', r, r, 0, largeArcFlag, 1, end.x, end.y].join(' ');
+
+		return d;
 	}
 
 	let svgValueArcPathD = $derived(
@@ -94,7 +119,18 @@
 			size / 2,
 			radius,
 			VALUE_ARC_START_OFFSET_DEGREES,
-			VALUE_ARC_TOTAL_SWEEP_DEGREES
+			VALUE_ARC_START_OFFSET_DEGREES + VALUE_ARC_TOTAL_SWEEP_DEGREES
+		)
+	);
+
+	const labelArcRadius = $derived(radius - arcWidth / 2 + tickOffset - tickLength + 1);
+	let svgLabelArcPathD = $derived(
+		describeArcPathReversed(
+			size / 2,
+			size / 2,
+			labelArcRadius,
+			VALUE_ARC_START_OFFSET_DEGREES + 180,
+			VALUE_ARC_START_OFFSET_DEGREES + VALUE_ARC_TOTAL_SWEEP_DEGREES + 180
 		)
 	);
 
@@ -110,25 +146,22 @@
 			key: string;
 		}[] = [];
 		const numSteps = Math.floor((max - min) / step);
-		const tickLineOuterRadius = radius - arcWidth / 2 + tickOffset; // Ticks start outside the arc track
+		const tickLineInnerRadius = radius - arcWidth / 2 + tickOffset;
 
 		for (let i = 1; i < numSteps; i++) {
 			const tickVal = min + i * step;
-			if (tickVal > max) continue; // Ensure we don't overshoot max if step doesn't divide evenly
+			if (tickVal > max) continue;
 
 			const normalizedTickVal = (tickVal - min) / (max - min);
-			const visualTickAngle =
-				TICK_ARC_START_OFFSET_DEGREES + normalizedTickVal * TICK_ARC_TOTAL_SWEEP_DEGREES;
+			const tickAngle =
+				VALUE_ARC_START_OFFSET_DEGREES + normalizedTickVal * VALUE_ARC_TOTAL_SWEEP_DEGREES + 180;
 
-			// Convert visual tick angle to SVG angle for polarToCartesian
-			const svgTickAngle = -90 - visualTickAngle;
-
-			const startPt = polarToCartesian(size / 2, size / 2, tickLineOuterRadius, svgTickAngle);
+			const startPt = polarToCartesian(size / 2, size / 2, tickLineInnerRadius, tickAngle);
 			const endPt = polarToCartesian(
 				size / 2,
 				size / 2,
-				tickLineOuterRadius + tickLength,
-				svgTickAngle
+				tickLineInnerRadius + tickLength,
+				tickAngle
 			);
 
 			tickData.push({ x1: startPt.x, y1: startPt.y, x2: endPt.x, y2: endPt.y, key: `tick-${i}` });
@@ -148,7 +181,7 @@
 		const dx = event.clientX - centerX;
 		const dy = event.clientY - centerY;
 
-		mouseAngleAtDragStart = Math.atan2(dx, -dy) * (180 / Math.PI);
+		mouseAngleAtDragStart = Math.atan2(dy, dx) * (180 / Math.PI);
 		knobAngleAtDragStart = currentKnobRotationDegrees;
 
 		window.addEventListener('mousemove', handleMouseMove);
@@ -166,9 +199,10 @@
 		const dx = event.clientX - centerX;
 		const dy = event.clientY - centerY;
 
-		const currentMouseAngle = Math.atan2(dx, -dy) * (180 / Math.PI);
+		const currentMouseAngle = Math.atan2(dy, dx) * (180 / Math.PI);
 		let deltaMouseAngle = currentMouseAngle - mouseAngleAtDragStart;
 
+		// Handle angle wrapping
 		if (deltaMouseAngle > 180) deltaMouseAngle -= 360;
 		else if (deltaMouseAngle < -180) deltaMouseAngle += 360;
 
@@ -247,6 +281,18 @@
 				/>
 			{/each}
 		{/if}
+
+		<!-- Label -->
+		{#if labelStylized}
+			<defs>
+				<path id="labelPath" d={svgLabelArcPathD} fill="none" />
+			</defs>
+			<text class="label-text" text-anchor="middle">
+				<textPath href="#labelPath" startOffset="50%">
+					{labelStylized}
+				</textPath>
+			</text>
+		{/if}
 	</svg>
 	<div
 		bind:this={knobElement}
@@ -281,6 +327,7 @@
 			class="knob-indicator"
 			style:transform="rotate({currentKnobRotationDegrees}deg) translateY(-15px)"
 			style:background={indicatorColor}
+			style:color={indicatorColor}
 		></div>
 	</div>
 </div>
@@ -311,6 +358,15 @@
 		transition: stroke-dashoffset 0.05s linear;
 	}
 
+	.label-text {
+		fill: var(--tx);
+		font-size: 11px;
+		font-family: 'IBM Plex Mono', monospace;
+		font-weight: 300;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+
 	.knob {
 		position: relative;
 		border-radius: 50%;
@@ -339,7 +395,7 @@
 		background: var(--indicator-color, var(--tx));
 		border-radius: 2px;
 		margin: auto;
-		box-shadow: var(--nm-xs-primary, 1px 1px 2px #b0b0b0, -1px -1px 2px #ffffff);
+		box-shadow: 0 0 5px currentColor;
 	}
 
 	.knob:focus-visible {

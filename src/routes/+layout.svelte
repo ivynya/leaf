@@ -7,6 +7,7 @@
 	import Colors from './Colors.svelte';
 	import Warp from './Warp.svelte';
 	import Toggle from '$lib/component-input/Toggle.svelte';
+	import Picker from './Picker.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -34,6 +35,7 @@
 		<br />
 		<h2>Time of Day</h2>
 		<Warp />
+		<Picker />
 		<br />
 		<h2>Style Options</h2>
 		<Toggle iconOn="check" iconOff="x" bind:state={$flat} />

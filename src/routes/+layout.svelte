@@ -8,6 +8,7 @@
 	import Warp from './Warp.svelte';
 	import Toggle from '$lib/component-input/Toggle.svelte';
 	import Picker from './Picker.svelte';
+	import Noise from '$lib/component-decorative/Noise.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -22,6 +23,7 @@
 	});
 </script>
 
+<Noise></Noise>
 <header>
 	<h1>@ivynya/leaf</h1>
 </header>

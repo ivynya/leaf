@@ -40,7 +40,7 @@
 
 	.slider {
 		@include mxn.nm-shadow-sm-inset;
-		border-radius: var(--bd-radius-sm);
+		border-radius: 15px;
 		cursor: pointer;
 		position: absolute;
 		top: 0;
@@ -66,7 +66,7 @@
 		&::before {
 			@include mxn.nm-shadow-sm;
 			background-color: var(--bg-darker);
-			border-radius: var(--bd-radius-sm);
+			border-radius: 16px;
 			content: '';
 			height: 30px;
 			width: 30px;
